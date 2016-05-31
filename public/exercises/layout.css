@@ -1,0 +1,25 @@
+body, html {
+	font-family: 'Trebuchet MS',verdana;"
+	height: 100%;
+	margin: 0px;
+}
+
+.menu {
+	background-color: #999F8E;
+	width: 20%;
+	height: 331.75px;
+	float: left;
+}
+.text1 {
+	padding-top: 0px;
+	padding-left: 10px;
+}
+.content {
+	width: 80%;
+	height: 100%;
+	background-color: #d2d8c7;
+	float: left;
+}
+.text2 {
+	padding: 10px;
+}

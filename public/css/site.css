@@ -1,0 +1,24 @@
+html {
+background: url(/img/spikfade.png) no-repeat top center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+background-color: #262626;
+}
+
+body {
+	font-family: Helvetica, "Helvetica Neue", Arial, Sans-Serif;
+	color: #FFFCFF;
+}
+
+h2.fancy-header {
+	color: #62D4ff;
+	text-decoration: underline;
+}
+
+ol {
+	list-style: lower-roman;
+}
+ul {
+	list-style: square;

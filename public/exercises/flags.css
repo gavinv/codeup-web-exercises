@@ -1,0 +1,99 @@
+body {
+	background: #f2f2f2;
+	text-align: center;
+}
+#karstark {
+	position: relative;
+	background: #000;
+	width: 300px;
+	height: 200px;
+	border: 1px solid #dddddd;
+	overflow: hidden;
+}
+.flag {
+	margin: 0 auto;
+	position: absolute;
+	box-sizing: content-box;
+}
+#karstark .star {
+	position: absolute;
+	width: 0px;
+	height: 5px;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 26px solid ghostwhite;
+}
+	#karstark .star1 {
+		top: 20px;
+		left: 145px;
+	}
+	#karstark .star2 {
+		top: 26px;
+		left: 159px;
+		transform: rotate(14deg);
+	}
+	#karstark .star3 {
+		top: 29px;
+		left: 172px;
+		transform: rotate(29deg);
+	}
+	#karstark .star4 {
+		top: 39px;
+		left: 181px;
+		transform: rotate(44deg);
+	}
+	#karstark .star5 {
+		top: 47px;
+		left: 191px;
+		transform: rotate(55deg);
+	}
+	#karstark .star6 {
+		top: 59px;
+		left: 195px;
+		transform: rotate(66deg);
+	}
+	#karstark .star7 {
+		top: 70px;
+		left: 200px;
+		transform: rotate(75deg);
+	}
+	#karstark .star8 {
+		top: 29px;
+		left: 172px;
+		transform: rotate(29deg);
+	}
+	#karstark .star9 {
+		top: 84px;
+		left: 201px;
+		transform: rotate(90deg);
+	}
+.pos2 {
+	top: -52px;
+    left: 247px;
+    transform: rotate(90deg);
+    position: absolute;
+}
+.pos3 {
+	top: 193px;
+	left: 299px;
+	transform: rotate(180deg);
+	position: absolute;
+}
+.pos4 {
+	top: 245px;
+	left: 52px;
+	transform: rotate(-90deg);
+	position: absolute;
+}
+#karstark .middle {
+	display: block;
+	width: 91px;
+	top: 50px;
+	left: 105px;
+	height: 91px;
+	background: ghostwhite;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	position: absolute;
+}
