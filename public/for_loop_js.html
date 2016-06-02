@@ -6,25 +6,39 @@
 <body>
 <script>
 //question 1
-	for (var i = 1; i < 11; i++) {
-    	console.log( + i);
+	for (var i = 1; i <= 10; i++) {
+		var num = ""
+    		for (var j = 1; j <= i; j++) {
+    			if (i == 10) {
+    				num = num + 0;
+    			} else {
+    				num = num + i;
+    			}
+    		}
+    		console.log(num);
 }
 
 //question 2
+	var randNum = Math.floor(Math.random() * 10) + 1;
 	for (var i = 1; i < 11; i++) {
-		result = 7*i;
-		console.log("7x" + i + "=" + result);
+		result = randNum*i;
+		console.log(randNum + 'x' + i + "=" + result);
 	}
 
 //question 3
 	for (var i = 1; i < 10; i++) {
-		var num = Math.floor(Math.random() * 200) + 20;
+		var num = Math.floor(Math.random() * 180) + 20;
 		if(num%2) {
 			console.log(num + " is odd");
 		} else {
 			console.log(num + " is even");
 		}
 }
+
+//question 4
+	for (var i = 100; i > 4; i = i - 5) {
+		console.log(i);
+	}
 </script>
 </body>
 </html>
