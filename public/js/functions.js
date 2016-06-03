@@ -6,7 +6,7 @@ var myNameIs = 'Gavin';
 // Create a function called 'sayHello' that takes a parameter 'name'.
 // When called, the function should log a message that says hello from the passed in name.
 function sayHello(name) {
-	console.log("Greetingsgit  " + myNameIs + "!");
+	console.log("Greetings  " + myNameIs + "!");
 }
 // TODO: Call the function 'sayHello' passing the variable 'myNameIs' as a parameter.
 sayHello(myNameIs);
