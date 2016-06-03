@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>debug exercise</title>
+</head>
+<body>
+<script type="text/javascript">
+var i = 1;
+
+var a = 0;
+var b = 0;
+var c = 0;
+var d = 0;
+var e = 0;
+var f = 0;
+
+while(i < 100) {
+	var luckyNumber = Math.floor(Math.random()* 6);
+	i++
+	switch(luckyNumber) {
+		case 0:
+		a++;
+		break;
+		case 1:
+		b++;
+		break;
+		case 2:
+		c++;
+		break;
+		case 3:
+		d++;
+		break;
+		case 4:
+		e++;
+		break;
+		case 5:
+		f++;
+		break;
+		default:
+		console.log("Im broken :c")
+	}
+}
+console.log("0 appeared " + a + " times");
+console.log("1 appeared " + b + " times");
+console.log("2 appeared " + c + " times");
+console.log("3 appeared " + d + " times");
+console.log("4 appeared " + e + " times");
+console.log("5 appeared " + f + " times");
+</script>
+</body>
+</html>
+
+
+
+	
