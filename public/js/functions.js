@@ -6,7 +6,7 @@ var myNameIs = 'Gavin';
 // Create a function called 'sayHello' that takes a parameter 'name'.
 // When called, the function should log a message that says hello from the passed in name.
 function sayHello(name) {
-	console.log("Greetings " + myNameIs + "!");
+	console.log("Greetingsgit  " + myNameIs + "!");
 }
 // TODO: Call the function 'sayHello' passing the variable 'myNameIs' as a parameter.
 sayHello(myNameIs);
@@ -23,3 +23,14 @@ function isOdd(number) {
 }
 isOdd(random);
 // TODO: Call the function 'isOdd' passing the variable 'random' as a parameter.
+
+
+//function for for_loop_js question 1
+function repeat(i, j) {
+	for (var i = 1; i <= 10; i++) {
+		repeatedText = ''
+		for (var j = 1; j <= i; j++) {
+			console.log()
+		}
+	}
+}
