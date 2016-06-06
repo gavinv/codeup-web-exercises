@@ -4,25 +4,24 @@
     // create a circle object
     var circle = {
         radius: 3,
-        area: 0,
+
         getArea: function () {
             // TODO: complete this method
             // hint: area = pi * radius^2
-            this.area = Math.PI * Math.pow(this.radius, 2);
-            return this.area;
+            return Math.PI * Math.pow(this.radius, 2);
         },
 
         logInfo: function (doRounding) {
             // TODO: complete this method.
-            this.getArea();
+            var area = this.getArea();
             if(doRounding) {
-            var rounded = Math.round(circle.getArea());
-            console.log(rounded);
+                area = Math.round(area);
+                console.log(area);
             } else {
             // If doRounding is true, round the result to the nearest integer.
             // Otherwise, output the complete value
 
-            console.log("Area of a circle with radius: " + this.radius + ", is: " + this.area);
+            console.log("Area of a circle with radius: " + this.radius + ", is: " + area);
             }
         }
     };
