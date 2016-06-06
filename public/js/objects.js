@@ -13,9 +13,12 @@ person.lastName = 'Vaught';
 
     // TODO: Add a sayHello method to the person object that
 
-var sayHello = alert("Hello " + person.firstName + " " + person.lastName + "!");
-    //       alerts a greeting using the firstName and lastName properties
+	person.sayHello = function () {
+	alert("Hello " + person.firstName + " " + person.lastName + "!");
+}
+    // alerts a greeting using the firstName and lastName properties
 
     // Say hello from the person object.
-    // person.sayHello();
+
+	person.sayHello();
 })();
