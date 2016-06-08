@@ -17,7 +17,7 @@
     var interval = 1000;
 
     // TODO: This function needs to be called once every second
-    var intervalId = setInterval(function updateTimer() {
+    var diffoomTheBoom = setInterval(function updateTimer() {
         if (detonationTimer == 0) {
             alert('ur ded');
             document.body.innerHTML = '';
@@ -31,7 +31,7 @@
     // TODO: When this function runs, it needs to
     // cancel the interval/timeout for updateTimer()
     function defuseTheBOM() {
-        clearInterval(intervalId);
+        clearInterval(diffoomTheBoom);
         alert('ur not ded!');
     };
 
