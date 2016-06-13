@@ -27,11 +27,13 @@ saveName.addEventListener('click', submitName, false);
 
 // add info to table
 var newGrade = function() {
-var newRow = document.createElement('tr');
-var newContent = "<td>"+ subjectEntry.value +"</td>" + "<td>"+ gradeEntry.value +"</td>";
-newRow.innerHTML = newContent;
-table.insertBefore(newRow, table.firstChild);
-student.addSubject(subjectEntry.value, Number(gradeEntry.value));
+	var newRow = document.createElement('tr');
+	var newContent = "<td>"+ subjectEntry.value +"</td>" + "<td>"+ gradeEntry.value +"</td>";
+	newRow.innerHTML = newContent;
+	table.insertBefore(newRow, table.firstChild);
+	student.addSubject(subjectEntry.value, Number(gradeEntry.value));
+	subjectEntry.value = '';
+	gradeEntry.value = '';
 };
 addGrade.addEventListener('click', newGrade, false);
 
@@ -61,11 +63,14 @@ var student = {
 };
 console.log(student.isAwesome());
 var calcAvg = function() {
+	newGrade();
 	stuAvg.innerHTML = Math.round(student.calculateAverage());
 	if (student.isAwesome()) {
 		awesome.classList.remove('hidden');
+		practice.classList.add('hidden');
 	} else {
 		practice.classList.remove('hidden');
+		awesome.classList.add('hidden');
 	};
 };
 calculateBtn.addEventListener('click', calcAvg, false);
