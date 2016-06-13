@@ -7,6 +7,7 @@ var right = document.getElementById('right');
 var buttons = document.getElementsByClassName('button');
 var operator = document.getElementsByClassName('operator');
 var clear = document.getElementById('clear');
+var negative = document.getElementById('negative');
 var completed = false;
 
 left.value = null;
@@ -32,7 +33,6 @@ function operatorClick() {
 	var dataValue = this.getAttribute('data-value');
 
 	if (middle.value != '' && left.value != '' && right.value != '') {
-		console.log(middle.value);
 		operate();
 		right.value = '';
 		middle.value = dataValue;
@@ -60,7 +60,6 @@ function operate() {
 	}
 	left.value = answer;
 	completed = true;
-	console.log(completed);
 };
 
 function clearInputs() {
@@ -70,6 +69,15 @@ function clearInputs() {
 	completed = false;
 };
 
+function plusMinus() {
+	if(right.value == '' && middle.value == '' && left.value != '') {
+		left.value = left.value * -1;
+	} else if(left.value != '' && middle.value != '') {
+		right.value = right.value * -1;
+	}
+};
+
+negative.addEventListener('click', plusMinus, false);
 clear.addEventListener('click', clearInputs, false);
 
 for (var i = 0; i < operator.length; i++) {
