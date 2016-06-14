@@ -19,7 +19,7 @@ function numbers() {
 
 	if (middle.value == '') {
 		left.value += dataValue;
-	} else if (middle.value != null && dataValue > 0 && dataValue < 10) {
+	} else if (middle.value != null && (right.value !== "" || (dataValue > 0 && dataValue < 10))) {
 		right.value += dataValue;
 		if(completed == true) {
 			clearInputs();
@@ -40,7 +40,7 @@ function operatorClick() {
 	}
 	if (dataValue === 'x' || dataValue === '+' || dataValue === '-' || dataValue === '/') {
 		middle.value = '';
-		middle.value += dataValue;
+		middle.value = dataValue;
 	} 
 };
 
