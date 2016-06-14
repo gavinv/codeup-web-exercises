@@ -9,67 +9,60 @@
 	</style>
 </head>
 <body>
-<div id="map"></div>
+	<div id="map"></div>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFzanGPVGEE07UgrRTFw2z97j3Z2vuEbY"></script>
-    <script type="text/javascript">
-    (function() {
-        "use strict";
+	<script type="text/javascript">
+		(function() {
+			"use strict";
 
-        // Set our map options
-        var mapOptions = {
-            // Set the zoom level
-            zoom: 10,
+			// function initMap() {
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 10,
+					center: {lat: 29.426791, lng: -98.489602}
+				});
 
-            // This sets the center of the map at our location
-            center: {
-                lat:  29.426791,
-                lng: -98.489602
-            }
-        };
-
-        // Render the map
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-		// Setting markers
-		var marker1 = new google.maps.Marker({
-			position: {lat: 29.4284917, lng: -98.4914463},
-			map: map
-		});
-		var marker2 = new google.maps.Marker ({
-			position: {lat: 29.5758833, lng: -98.624709},
-			map: map
-		});
-		var marker3 = new google.maps.Marker ({
-			position: {lat: 29.464171, lng: -98.5076408},
-			map: map
-		});
-
-		// Set info windows
+				var marker1 = new google.maps.Marker({
+					position: {lat: 29.4284917, lng: -98.4914463},
+					map: map,
+					animation: google.maps.Animation.DROP,
+					draggable: false
+				});
+				var marker2 = new google.maps.Marker ({
+					position: {lat: 29.5758833, lng: -98.624709},
+					map: map,
+					animation: google.maps.Animation.DROP,
+					draggable: false
+				});
+				var marker3 = new google.maps.Marker ({
+					position: {lat: 29.464171, lng: -98.5076408},
+					map: map,
+					animation: google.maps.Animation.DROP,
+					draggable: false
+				});
+			// };
+			// initMap();
+			
 		marker1.addListener('click', function () {
 			var infoWindow1 = new google.maps.InfoWindow({
 				content: "Kimura",
-				animation: google.maps.Animation.DROP
 			});
 			infoWindow1.open(map, marker1);
 		});
 		marker2.addListener('click', function() {
 			var infoWindow2 = new google.maps.InfoWindow({
 				content: "The Block SA",
-				animation: google.maps.Animation.DROP
 			});
 			infoWindow2.open(map, marker2);
 		});
 		marker3.addListener('click', function() {
 			var infoWindow3 = new google.maps.InfoWindow({
 				content: "Chris Madrid's",
-				animation: google.maps.Animation.DROP
 			});		
 			infoWindow3.open(map, marker3);
 		});
-	});
 	})();
 
-    </script>
+</script>
 <!-- AIzaSyBFzanGPVGEE07UgrRTFw2z97j3Z2vuEbY -->
 </body>
 </html>
