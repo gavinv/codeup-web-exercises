@@ -15,54 +15,50 @@
 		(function() {
 			"use strict";
 
-			// function initMap() {
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 10,
-					center: {lat: 29.426791, lng: -98.489602}
-				});
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 10,
+				center: {lat: 29.426791, lng: -98.489602}
+			});
 
-				var marker1 = new google.maps.Marker({
-					position: {lat: 29.4284917, lng: -98.4914463},
+			var markers = [
+			{
+				marker: '1',
+				lat: 29.4284917,
+				lng: -98.4914463,
+				content: 'Kimura'
+			},
+			{
+				marker: '2',
+				lat: 29.5758833,
+				lng: -98.624709,
+				content: 'The Block SA'
+			},
+			{
+				marker: '3',
+				lat: 29.464171,
+				lng: -98.5076408,
+				content: 'Chris Madrid\'s'
+			}
+			];
+
+			markers.forEach(function(element, index) {
+				var droppedPins = new google.maps.Marker ({
 					map: map,
 					animation: google.maps.Animation.DROP,
-					draggable: false
+					draggable: false,
+					position: {lat: element.lat, lng: element.lng}
 				});
-				var marker2 = new google.maps.Marker ({
-					position: {lat: 29.5758833, lng: -98.624709},
-					map: map,
-					animation: google.maps.Animation.DROP,
-					draggable: false
+				droppedPins.addListener('click', function () {
+					var infoWindow1 = new google.maps.InfoWindow({
+						content: element.content,
+					});
+					infoWindow1.open(map, droppedPins);
 				});
-				var marker3 = new google.maps.Marker ({
-					position: {lat: 29.464171, lng: -98.5076408},
-					map: map,
-					animation: google.maps.Animation.DROP,
-					draggable: false
-				});
-			// };
-			// initMap();
+			});
 			
-		marker1.addListener('click', function () {
-			var infoWindow1 = new google.maps.InfoWindow({
-				content: "Kimura",
-			});
-			infoWindow1.open(map, marker1);
-		});
-		marker2.addListener('click', function() {
-			var infoWindow2 = new google.maps.InfoWindow({
-				content: "The Block SA",
-			});
-			infoWindow2.open(map, marker2);
-		});
-		marker3.addListener('click', function() {
-			var infoWindow3 = new google.maps.InfoWindow({
-				content: "Chris Madrid's",
-			});		
-			infoWindow3.open(map, marker3);
-		});
-	})();
+		})();
 
-</script>
-<!-- AIzaSyBFzanGPVGEE07UgrRTFw2z97j3Z2vuEbY -->
+	</script>
+	<!-- AIzaSyBFzanGPVGEE07UgrRTFw2z97j3Z2vuEbY -->
 </body>
 </html>
