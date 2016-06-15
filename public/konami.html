@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Konami Code</title>
+	<link rel="stylesheet" href="css/konami.css">
+</head>
+<body>
+	<div class='hearts'>
+		<img id='heart-three' src="img/heart_full.png">
+		<img id='heart-two' src="img/heart_full.png">
+		<img id='heart-one' src="img/heart_full.png">
+	</div>
+	<img src="img/terrible_fate.gif">
+	<audio preload='auto' id='secret'>
+		<source src="sounds/LTTP_Secret.wav" type="audio/wav">
+	</audio>
+
+		<script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+		<script>
+			"use strict";
+
+			var cheatCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+			var index = 0;
+			var $secret = $('#secret').get(0);
+			$('img').css('display', 'block').css('margin', '0 auto');
+
+			$(document).keyup(function(event){
+				console.log(event.keyCode);
+
+				if(event.keyCode == cheatCode[index]) {
+					index++;
+				} else {
+					index = 0;
+				}
+				if(index == cheatCode.length) {
+					console.log('hello');
+					index = 0;
+					$secret.play();
+				}
+			});
+		</script>
+	</body>
+	</html>
