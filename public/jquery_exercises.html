@@ -11,21 +11,29 @@
 	<div class='zelda'>
 		<h3 class='unordered-list'>The Facts:</h3>
 		<ul class='unordered-list'>
-			<li class='codeup'>Coffee</li>
-			<li class='codeup'>Tea</li>
-			<li class='codeup'>Muffins</li>
+			<li>Coffee</li>
+			<li>Tea</li>
+			<li>Muffins</li>
 		</ul>
 	</div>	
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		$(document).ready(function() {
-			var $header = $('.hello').css('font-size', '42px').css('font-family', 'Times New Roman, Serif').css('text-align', 'center');
-			var $paragraph = $('#para').css('font-size', '18px').css('font-family', 'Times New Roman, Serif').css('text-align', 'center');
-			$('.unordered-list').css()
-			$('img').css('center').css('float', 'left').css();
-			$('li').css('font-size', '20px');
-			$('*').css('border', '1px solid ghostwhite');
-		})
+			$('h1').click(function() {
+				$('h1').css('background-color', 'grey');
+			});
+			$('p').dblclick(function() {
+				$('p').css('font-size', '18px');
+			});
+			$('li').hover(
+				function() {
+					$(this).css('color', 'F00');
+				},
+				function() {
+					$(this).css('color', '000');
+				}
+			);
+		});
 	</script>
 </body>
 </html>
