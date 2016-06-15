@@ -16,9 +16,15 @@
 			"use strict";
 
 			var map = new google.maps.Map(document.getElementById('map'), {
-				zoom: 10,
-				center: {lat: 29.426791, lng: -98.489602}
+				zoom: 11,
+				center: {lat: 29.476791, lng: -98.489602}
 			});
+
+			var customPin = {
+				url: "/img/map-marker-icon.png",
+				scaledSize: new google.maps.Size(30, 30),
+				antialiasing: true
+			};
 
 			var markers = [
 			{
@@ -46,16 +52,18 @@
 					map: map,
 					animation: google.maps.Animation.DROP,
 					draggable: false,
-					position: {lat: element.lat, lng: element.lng}
+					position: {lat: element.lat, lng: element.lng},
+					icon: customPin
 				});
 				droppedPins.addListener('click', function () {
 					var infoWindow1 = new google.maps.InfoWindow({
 						content: element.content,
+						icon: google.maps.Size(100, 100)
 					});
 					infoWindow1.open(map, droppedPins);
 				});
 			});
-			
+
 		})();
 
 	</script>
