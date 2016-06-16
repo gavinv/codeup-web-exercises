@@ -27,6 +27,9 @@
 		<audio autoplay loop preload="auto" id='overworld'>
 			<source src="sounds/majoras_theme.mp3" type='audio/mpeg'>
 		</audio>
+		<audio loop preload="auto" id='distored-overword'>
+			<source src="sounds/majoras_theme_distorted.mp3" type="audio/mpeg">
+		</audio>
 	</div>
 
 
@@ -45,6 +48,8 @@
 			var $hurt = $('#hurt').get(0);
 			var $death = $('#death').get(0);
 			var $lowHealth = $('#low-health').get(0);
+			var $overworld = $('#overworld').get(0);
+			var $overworldDistort = $('#distored-overword').get(0);
 			$('img').css('display', 'block').css('margin', '0 auto');
 			var $hearts = $('.hearts');
 			console.log($hearts[0].children[0]);
@@ -85,7 +90,9 @@
 					element.src = img[2];
 					$death.play();
 					failedAttempts = 6;
-					// location.reload();
+					$overworld.pause();
+					$overworldDistort.play();
+					/* location.reload(); */
 				});
 				}
 					index = 0;
@@ -94,6 +101,7 @@
 					console.log('hello');
 					index = 0;
 					$secret.play();
+					$('.hearts').append('<img src="img/heart_full.png">');
 				}
 			});
 		</script>
