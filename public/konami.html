@@ -5,12 +5,14 @@
 	<link rel="stylesheet" href="css/konami.css">
 </head>
 <body>
-	<div class='hearts'>
-		<img class='heartImages' id='heart-three'>
-		<img class='heartImages' id='heart-two'>
-		<img class='heartImages' id='heart-one'>
-	</div>
 	<img src="img/terrible_fate.gif">
+	<div class='all-hearts'>
+		<div class='hearts'>
+			<img class='heartImages' id='heart-three'>
+			<img class='heartImages' id='heart-two'>
+			<img class='heartImages' id='heart-one'>
+		</div>
+	</div>
 	<div class="sounds">
 		<audio preload='auto' id='secret'>
 			<source src="sounds/LTTP_Secret.wav" type="audio/wav">
@@ -53,9 +55,11 @@
 			$('img').css('display', 'block').css('margin', '0 auto');
 			var $hearts = $('.hearts');
 			console.log($hearts[0].children[0]);
-
+			console.log($('body').first());
 
 			$(document).keyup(function(event){
+
+				/* generalize to add other codes */
 
 				if(event.keyCode == konamiCode[index]) {
 					index++;
@@ -101,7 +105,9 @@
 					console.log('hello');
 					index = 0;
 					$secret.play();
-					$('.hearts').append('<img src="img/heart_full.png">');
+					for(var i = 0; i <= 9; i++) {
+						$('.hearts').after('<div class="hearts2"><img src="img/heart_full.png"><img src="img/heart_full.png"><img src="img/heart_full.png"></div>').css('width', '72px')
+					}
 				}
 			});
 		</script>
