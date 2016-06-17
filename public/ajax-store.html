@@ -33,7 +33,14 @@
                 }).done(function(inventory) {
                     $('#insertProducts').html('')
                     inventory.forEach(function(tool) {
-                        $('#insertProducts').append("<tr><td>" + tool.title + "</td><td>" + tool.quantity + "</td><td>" + "$" + tool.price + "</td><td>" + tool.categories.join(', ') + "</td></tr>")
+                        var contentString = "";
+                        contentString += '<tr>';
+                        contentString += '<td>' + tool.title + '</td>';
+                        contentString += '<td>' + tool.quantity + '</td>';
+                        contentString += '<td>' + tool.price + '</td>';
+                        contentString += '<td>' + tool.categories.join(', ') + '</td>';
+                        contentString += '</tr>';
+                        $('#insertProducts').append(contentString);
                     });
                 });
             };

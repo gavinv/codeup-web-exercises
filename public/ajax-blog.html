@@ -47,14 +47,12 @@
 				type: 'GET'
 			}).done(function(blog) {
 				blog.forEach(function(posts) {
-
-					var htmlString = ('<h3>' + posts.title + '</h3><h6>' + posts.date + '</h6><p>' + posts.content + '</p>');
-					$('.posts').append(htmlString)
 					for(var i = 0; i < posts.categories.length; i++) {
 						var linkString = ('<a href="#">' + posts.categories[i] + '</a>' + ', ');
-					$('.posts').append(linkString)
+						$('.posts').prepend(linkString)
 					}
-					$('.posts').append()
+						var htmlString = ('<h3>' + posts.title + '</h3><h6>' + posts.date + '</h6><p>' + posts.content + '</p>');
+						$('.posts').prepend(htmlString)
 				})
 			})
 		})();
