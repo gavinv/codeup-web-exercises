@@ -15,55 +15,68 @@
 			<!-- var contentString will be appended here -->
 		</div>
 		<p>
-		<div class='input input-group col-xs-4'>
-			<input type='text' class='form-control' placeholder='Location'>
-			<span class='input-group-btn'>
-				<button class='btn btn-primary'>Update Map</button>
-			</span>
-		</div>
+			<div class='input input-group col-xs-4'>
+				<input type='text' class='form-control' placeholder='Location'>
+				<span class='input-group-btn'>
+					<button class='btn btn-primary'>Update Map</button>
+				</span>
+			</div>
 		</p>
-		<script>
-			$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-				APPID: "4d754de6f96d1dc3ef0fad7748dd7967",
-				q:     "San Antonio, TX",
-				units: 'imperial',
-				cnt: '3',
-				lat: '',
-				lon: ''
-			}).done(function(data) {
-				$('.row').html('')
-				console.log(data);
-				$('.location').html(data.city.name);
-				data.list.forEach(function(a) {
-					console.log(a);
-					var contentString = '';
-					contentString += '<div class="day col-xs-4">'
-					contentString += '<h3>' + Math.round(a.temp.day) + '&deg;</h3>';
-					contentString += '<img src="http://openweathermap.org/img/w/' + a.weather[0].icon + '.png">';
-					contentString += '<div><sup>' + Math.round(a.temp.min) + '&deg; / ' + Math.round(a.temp.max) + '&deg;</sup></div>'
-					contentString += '<p><strong>' + a.weather[0].main + ':</strong>' + '  ' + a.weather[0].description + '</p>';
-					contentString += '<p><strong>Humidity:</strong>' + '  ' + a.humidity + '</p>';
-					contentString += '<p><strong>Wind:</strong>' + '  ' + Math.round(a.speed) + ' mph</p>';
-					contentString += '<p><strong>Pressure:</strong>' + '  ' + a.pressure + '</p>';
-					contentString += '</div>';
-					$('.row').append(contentString);
-				})
-			});
-		</script>
 		<div id='map'></div>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBktnfUiDFnbbSq5irfF1icc3g5iOYEHvc"></script>
-		<script>
-			(function() {
-				"use strict";
-
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 8,
-					center: {lat: 29.476791, lng: -98.489602}
-				});
-
-			})();
-		</script>
 	</div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBktnfUiDFnbbSq5irfF1icc3g5iOYEHvc"></script>
+	<script>
+		(function() {
+			'use strict';
+			var markerLat = 29.424122;
+			var markerLng = -98.493629;
+			var myLatlng = new google.maps.LatLng(markerLat, markerLng);
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 8,
+				center: myLatlng
+			});
+			var marker = new google.maps.Marker({
+				position: myLatlng,
+				map: map,
+				draggable: true,
+				title:"Drag me!"
+			});
+
+			function update() {
+				$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+					APPID: "4d754de6f96d1dc3ef0fad7748dd7967",
+					units: 'imperial',
+					cnt: '3',
+					lat: markerLat,
+					lon: markerLng
+				}).done(function(data) {
+					$('.row').html('')
+					$('.location').html(data.city.name);
+					data.list.forEach(function(a) {
+						var contentString = '';
+						contentString += '<div class="day col-xs-4">'
+						contentString += '<h3>' + Math.round(a.temp.day) + '&deg;</h3>';
+						contentString += '<img src="http://openweathermap.org/img/w/' + a.weather[0].icon + '.png">';
+						contentString += '<div><sup>' + Math.round(a.temp.min) + '&deg; / ' + Math.round(a.temp.max) + '&deg;</sup></div>'
+						contentString += '<p><strong>' + a.weather[0].main + ':</strong>' + '  ' + a.weather[0].description + '</p>';
+						contentString += '<p><strong>Humidity:</strong>' + '  ' + a.humidity + '</p>';
+						contentString += '<p><strong>Wind:</strong>' + '  ' + Math.round(a.speed) + ' mph</p>';
+						contentString += '<p><strong>Pressure:</strong>' + '  ' + a.pressure + '</p>';
+						contentString += '</div>';
+						$('.row').append(contentString);
+					})
+				});
+			};
+			update();
+
+			marker.addListener('mouseup', function() {
+				marker.getPosition();
+				markerLat = marker.getPosition().lat();
+				markerLng = marker.getPosition().lng();
+				update();
+			});
+		})();
+	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 </html>
