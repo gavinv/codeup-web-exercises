@@ -1,0 +1,18 @@
+body {
+	background-color: #5FC1E5;
+}
+.container-fluid {
+/*	display: flex;
+	justify-content: space-around;*/
+}
+
+h1 {
+/*	position: relative;
+	float: left;*/
+}
+
+.day {
+	text-align: center;
+	border: 1px solid grey;
+	background-color: ghostwhite;
+}
