@@ -1,6 +1,15 @@
 body {
-	background-color: #5FC1E5;
+	background-color: #fff;
 }
+
+.input {
+	margin: auto;
+}
+
+#map {
+	height: 300px;
+}
+
 .container-fluid {
 /*	display: flex;
 	justify-content: space-around;*/
