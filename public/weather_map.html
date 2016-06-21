@@ -9,14 +9,14 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<div class='container'>
 		<div class='page-header'>
-			<h1>Weather Map Application <small class='location'></small></h1>
+			<h1>Weather Map Application <div><small class='location'></small></div></h1>
 		</div>
 		<div class='row'>
 			<!-- var contentString will be appended here -->
 		</div>
 		<p>
 			<div class='input input-group col-xs-4'>
-				<input type='text' class='form-control' placeholder='Location'>
+				<input type='text' id='location' class='form-control' placeholder='Location'>
 				<span class='input-group-btn'>
 					<button class='btn btn-primary'>Update Map</button>
 				</span>
@@ -30,6 +30,7 @@
 			'use strict';
 			var markerLat = 29.424122;
 			var markerLng = -98.493629;
+			var $button = $('.btn');
 			var myLatlng = new google.maps.LatLng(markerLat, markerLng);
 			var map = new google.maps.Map(document.getElementById('map'), {
 				zoom: 8,
@@ -42,6 +43,36 @@
 				title:"Drag me!"
 			});
 
+			// geocoder
+			var geocoder = new google.maps.Geocoder();
+			function codeAddress() {
+				var address = $('#location').val();
+				console.log(address);
+				geocoder.geocode({'address': address}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						map.setCenter(results[0].geometry.location);
+						marker.setMap(null);
+						marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location,
+							draggable: true
+						});
+						marker.addListener('dragend', function() {
+							marker.getPosition();
+							markerLat = marker.getPosition().lat();
+							markerLng = marker.getPosition().lng();
+							update();
+						});
+						markerLat = results[0].geometry.location.lat();
+						markerLng = results[0].geometry.location.lng();
+						update();
+					} else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+				});
+			}
+
+			// open weather api
 			function update() {
 				$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 					APPID: "4d754de6f96d1dc3ef0fad7748dd7967",
@@ -64,17 +95,30 @@
 						contentString += '<p><strong>Pressure:</strong>' + '  ' + a.pressure + '</p>';
 						contentString += '</div>';
 						$('.row').append(contentString);
+						switch(a.weather[0].main) {
+							case 'Rain':
+								$('body').css('background-image', 'url("img/rain.jpg")');
+								break;
+							case 'Clear':
+								$('body').css('background-image', 'url(img/clear_sky.jpg)');
+								break;
+							case 'Clouds':
+								$('body').css('background-image', 'url(img/clouds.jpg)');
+								break;
+						}
 					})
 				});
 			};
-			update();
 
-			marker.addListener('mouseup', function() {
+
+			update();
+			marker.addListener('dragend', function() {
 				marker.getPosition();
 				markerLat = marker.getPosition().lat();
 				markerLng = marker.getPosition().lng();
 				update();
 			});
+			$button.click(codeAddress);
 		})();
 	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

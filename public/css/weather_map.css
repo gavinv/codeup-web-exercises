@@ -1,5 +1,6 @@
 body {
-	background-color: #fff;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 }
 
 .input {
@@ -10,18 +11,22 @@ body {
 	height: 300px;
 }
 
-.container-fluid {
-/*	display: flex;
-	justify-content: space-around;*/
+.container {
 }
 
-h1 {
-/*	position: relative;
-	float: left;*/
+.page-header {
+	text-align: center;
+	background-color: ghostwhite;
+ 	background: rgba(255, 255, 255, 0.45);
+ 	border-radius: 250px;
 }
 
 .day {
 	text-align: center;
 	border: 1px solid grey;
-	background-color: ghostwhite;
+	background: rgba(248,248,255, 0.8);
+	border-radius: 15px;
+}
+.day:hover {
+	background: rgba(248,248,255, 1.0);
 }
