@@ -10,6 +10,6 @@
 	<title>Server Name Generator</title>
 </head>
 <body>
-<h1><?= $adjectives[$randomAdj] . ' ' . $nouns[$randomNoun]; ?></h1>
+<h1><?php $adjectives[$randomAdj] . ' ' . $nouns[$randomNoun]; ?></h1>
 </body>
 </html>
