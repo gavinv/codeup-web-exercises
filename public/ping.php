@@ -22,6 +22,6 @@
 	<h3>PING</h3>
 	<h3>Score: <?= $count ?></h3>
 	<a href="/pong.php?count=<?= $count+1 ?>">HIT</a> //
-	<a href="/pong.php?data=miss">MISS</a>
+	<a href="/ping.php?data=miss">MISS</a>
 </body>
 </html>

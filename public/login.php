@@ -1,15 +1,18 @@
 <?php
 function pageController() {
+	session_start();
 	$data = [];
+	// $data['sessionId'] = session_id();
+	$data['username'] = null;
 	$data['username'] = isset($_POST['username']) ? $_POST['username'] : null;
 	$data['password'] = isset($_POST['password']) ? $_POST['password'] : null;
 	if(($data['username'] !== 'guest' && $data['username'] !== null) && ($data['password'] !== 'password' && $data['password'] !== null)) {
 		$data['message'] = 'Invalid credentials';
 	} else if ($data['username'] == 'guest' && $data['password'] == 'password') {
+		$_SESSION['loggedInUser'] = $data['username'];
 		header('Location: authorized.php');
 		exit;
 	}
-
 	return $data;
 }
 extract(pageController());
