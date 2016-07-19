@@ -2,7 +2,6 @@
 function pageController() {
 	session_start();
 	$data = [];
-	// $data['sessionId'] = session_id();
 	$data['username'] = null;
 	$data['username'] = isset($_POST['username']) ? $_POST['username'] : null;
 	$data['password'] = isset($_POST['password']) ? $_POST['password'] : null;

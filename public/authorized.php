@@ -2,11 +2,11 @@
 function pageController() {
 	session_start();
 	$data = [];
-	$data['username'] = $_SESSION['loggedInUser'];
-	if($_SESSION['loggedInUser'] !== 'guest') {
+	if(!isset($_SESSION['loggedInUser'])) {
 		header('Location: login.php');
 		exit;
 	}
+	$data['username'] = $_SESSION['loggedInUser'];
 	return $data;
 }
 extract(pageController());
