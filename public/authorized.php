@@ -1,4 +1,5 @@
 <?php
+require 'functions.php';
 function pageController() {
 	session_start();
 	$data = [];
@@ -6,7 +7,7 @@ function pageController() {
 		header('Location: login.php');
 		exit;
 	}
-	$data['username'] = $_SESSION['loggedInUser'];
+	$data['username'] = escape($_SESSION['loggedInUser']);
 	return $data;
 }
 extract(pageController());
