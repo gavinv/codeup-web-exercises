@@ -23,25 +23,6 @@ extract(pageController());
 </head>
 <body>
 	<div class="container">
-	<?php if(isset($action)) : ?>
-			<div class="modal fade" tabindex="-1" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title">Modal title</h4>
-						</div>
-						<div class="modal-body">
-							<p>One fine body&hellip;</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
-						</div>
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-		<?php endif; ?>
 		<section class="row">
 			<div class="col-md-8">
 				<header class="page-header">
@@ -83,12 +64,11 @@ extract(pageController());
 								<td><?= $contact['name'] ?></td>
 								<td><?= formatNumber($contact['number']) ?></td>
 								<td>
-									<!-- The query string for this one should contain the contact name -->
-									<a class="btn btn-danger" href="?delete_name=<?= $contact['index'] ?>">
+									<button type="button" class="delete btn btn-danger" id="<?= $contact['index'] ?>" data-toggle="modal" data-target="#modal">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true">
 										</span>
 										Delete
-									</a>
+									</button>
 								</td>
 							</tr>
 						<?php endforeach; ?>
@@ -131,6 +111,28 @@ extract(pageController());
 						</div>
 					</div>
 				</form>
+				<!-- Modal -->
+				<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="login">
+					<div class="modal-dialog" role="dialog">
+						<div class="">
+							<div class="modal-header">
+								<h4 class="modal-title">Confirm</h4>
+							</div>
+							<div class="modal-body">
+								<p>Are you sure?</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<a class="btn btn-danger" href="">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true">
+									</span>
+									Delete
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end modal -->
 			</section>
 		</article>
 	</div>
@@ -144,5 +146,12 @@ extract(pageController());
 	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
 	crossorigin="anonymous"
 	></script>
+	<script>
+		$('.delete').click(function(){
+			var id = "?delete_name=" + $(this).attr('id');
+			console.log(id);
+			$(this).attr("href", id);
+		})
+	</script>
 </body>
 </html>

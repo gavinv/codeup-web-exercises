@@ -13,7 +13,7 @@ function pageController() {
 		$data['contacts'] = searchByName($data['contacts'], $search);
 	}
 	//add a return to full list button if search query is set
-	if(isset($_GET['delete_name'])) {
+	if(inputGet('delete_name')) {
 		$deleteContact = inputGet('delete_name');
 		deleteContacts($data['contacts'], $deleteContact);
 	} 
