@@ -1,24 +1,10 @@
 <?php
 require_once 'functions.php';
-function pageController() {
-	$data = [];
-	if(inputHas('name')) {
-		$name = escape(inputGet('name'));
-		$number = escape(inputGet('number'));
-		addContact($name, $number);
-	}
-	$data['contacts'] = parseContacts('contacts.txt');
-	if(inputGet('search')) {
-		$search = inputGet('search');
-		$data['contacts'] = searchByName($data['contacts'], $search);
-	}
-	//add a return to full list button if search query is set
-	$deleteContact = inputGet('delete_name');
-	if(isset($_GET['delete_name'])) {
-		deleteContacts($data['contacts'], $deleteContact);
-	} 
-	return $data;
-}
+require_once 'middleware.php';
+// require_once 'validation.php';
+require_once 'controller.php';
+require_once 'model.php';
+
 extract(pageController());
 ?>
 <!DOCTYPE html>
@@ -37,6 +23,25 @@ extract(pageController());
 </head>
 <body>
 	<div class="container">
+	<?php if(isset($action)) : ?>
+			<div class="modal fade" tabindex="-1" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							<p>One fine body&hellip;</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+		<?php endif; ?>
 		<section class="row">
 			<div class="col-md-8">
 				<header class="page-header">
@@ -76,10 +81,10 @@ extract(pageController());
 						<?php foreach($contacts as $contact) : ?>
 							<tr>
 								<td><?= $contact['name'] ?></td>
-								<td><?= $contact['number'] ?></td>
+								<td><?= formatNumber($contact['number']) ?></td>
 								<td>
 									<!-- The query string for this one should contain the contact name -->
-									<a class="btn btn-danger" href="?delete_name=<?= $contact['name'] ?>">
+									<a class="btn btn-danger" href="?delete_name=<?= $contact['index'] ?>">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true">
 										</span>
 										Delete
