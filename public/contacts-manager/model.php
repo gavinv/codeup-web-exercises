@@ -16,11 +16,7 @@ function addContact($name, $number)
 }
 function deleteContacts(&$contacts, $idNumber) 
 {
-	foreach ($contacts as $index => $contact) {
-		if (strpos($contact['index'], $idNumber) !== false) {
-			unset($contacts[$index]);
-		}
-	}
+	unset($contacts[$idNumber]);
 	saveContacts($contacts);
 	header ('Location: index.php');
 	exit;

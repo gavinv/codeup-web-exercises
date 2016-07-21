@@ -111,47 +111,45 @@ extract(pageController());
 						</div>
 					</div>
 				</form>
-				<!-- Modal -->
-				<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="login">
-					<div class="modal-dialog" role="dialog">
-						<div class="">
-							<div class="modal-header">
-								<h4 class="modal-title">Confirm</h4>
-							</div>
-							<div class="modal-body">
-								<p>Are you sure?</p>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								<a class="btn btn-danger" href="">
-									<span class="glyphicon glyphicon-trash" aria-hidden="true">
-									</span>
-									Delete
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end modal -->
 			</section>
 		</article>
 	</div>
-	<script
-	src="https://code.jquery.com/jquery-2.2.4.min.js"
-	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-	crossorigin="anonymous"
-	></script>
-	<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-	integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-	crossorigin="anonymous"
-	></script>
+	<!-- Modal -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="login">
+		<div class="modal-dialog" role="dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Confirm</h4>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<a class="btn btn-danger remove" href="">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true">
+						</span>
+						Delete
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end modal -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script>
-		$('.delete').click(function(){
-			var id = "?delete_name=" + $(this).attr('id');
-			console.log(id);
-			$(this).attr("href", id);
+	    var index = '';
+		$('.delete').click(function(e) {
+			e.preventDefault();
+			index = $(this).attr('id');
 		})
+		$('.remove').click(function(e) {
+			e.preventDefault();
+			window.location = '?delete_name=' + index;
+		})
+
 	</script>
 </body>
 </html>
