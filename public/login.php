@@ -1,22 +1,19 @@
 <?php
-require 'functions.php';
-require_once 'Auth.php';
+require_once '../Auth.php';
 function pageController() {
 	session_start();
-	Auth::attempt(Input::get('username'), Input::get('password'));
-	// $data = [];
-	// $data['username'] = inputGet('username');
-	// $data['password'] = inputGet('password');
-	// if(($data['username'] !== 'guest' && $data['username'] !== null) && ($data['password'] !== 'password' && $data['password'] !== null)) {
-	// 	$data['message'] = 'Invalid credentials';
-	// } else if ($data['username'] == 'guest' && $data['password'] == 'password') {
-	// 	$_SESSION['loggedInUser'] = $data['username'];
-	// 	header('Location: authorized.php');
-	// 	exit;
-	// }
-	// return $data;
+	if($_POST)
+	{
+		Auth::attempt(Input::get('username'), Input::get('password'));
+		if(Auth::check())
+		{
+			header('Location: authorized.php');
+		}
+	}
+	
+	
 }
-extract(pageController());
+pageController();
 
 ?>
 <!DOCTYPE html>
@@ -62,7 +59,7 @@ extract(pageController());
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script>
 		$('.modal').on('shown.bs.modal', function() {
-  			$(this).find('[autofocus]').focus();
+			$(this).find('[autofocus]').focus();
 		});
 	</script>
 </body>

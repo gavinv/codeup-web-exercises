@@ -1,13 +1,10 @@
 <?php
+require_once '../Auth.php';
 session_start();
-function clearSession() {
-	session_unset();
-	session_regenerate_id(true);
+function pageController() {
+	Auth::logout();
 	header('Location: login.php');
 	exit;
-}
-function pageController() {
-	clearSession();
 }
 pageController();
 ?>
