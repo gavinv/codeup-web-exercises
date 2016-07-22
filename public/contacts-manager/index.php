@@ -1,11 +1,12 @@
 <?php
 require_once 'functions.php';
+require_once 'controller.php';
 require_once 'middleware.php';
 // require_once 'validation.php';
-require_once 'controller.php';
 require_once 'model.php';
-
 extract(pageController());
+$pageNumber = (pageNumber($contacts));
+$pagedContacts = pagination($contacts);
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,7 +60,7 @@ extract(pageController());
 					</thead>
 					<tbody>
 						<!-- Your contacts should be here -->
-						<?php foreach($contacts as $contact) : ?>
+						<?php foreach($pagedContacts as $contact) : ?>
 							<tr>
 								<td><?= $contact['name'] ?></td>
 								<td><?= formatNumber($contact['number']) ?></td>
@@ -74,6 +75,23 @@ extract(pageController());
 						<?php endforeach; ?>
 					</tbody>
 				</table>
+				<nav>
+					<ul class="pagination">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<?php foreach($pageNumber as $page) : ?>
+							<li><a href="?page=<?= $page ?>"><?= $page + 1 ?></a></li>
+						<?php endforeach; ?>
+						<li>
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
 			</section>
 			<section class="col-md-6">
 				<form method="post" class="form-horizontal">
@@ -140,7 +158,7 @@ extract(pageController());
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script>
-	    var index = '';
+		var index = '';
 		$('.delete').click(function(e) {
 			e.preventDefault();
 			index = $(this).attr('id');

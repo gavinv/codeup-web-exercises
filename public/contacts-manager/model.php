@@ -32,7 +32,8 @@ function searchByName($array, $search)
 	}
 	return $filtered;
 }
-function formatNumber($string) {
+function formatNumber($string) 
+{
 	if(strlen($string) == 7) {
 		$formatNumber = substr($string, 0, 3) . '-' . substr($string, 3);
 	} elseif(strlen($string) == 10) {
