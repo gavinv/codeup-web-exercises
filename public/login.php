@@ -1,18 +1,20 @@
 <?php
 require 'functions.php';
+require_once 'Auth.php';
 function pageController() {
 	session_start();
-	$data = [];
-	$data['username'] = inputGet('username');
-	$data['password'] = inputGet('password');
-	if(($data['username'] !== 'guest' && $data['username'] !== null) && ($data['password'] !== 'password' && $data['password'] !== null)) {
-		$data['message'] = 'Invalid credentials';
-	} else if ($data['username'] == 'guest' && $data['password'] == 'password') {
-		$_SESSION['loggedInUser'] = $data['username'];
-		header('Location: authorized.php');
-		exit;
-	}
-	return $data;
+	Auth::attempt(Input::get('username'), Input::get('password'));
+	// $data = [];
+	// $data['username'] = inputGet('username');
+	// $data['password'] = inputGet('password');
+	// if(($data['username'] !== 'guest' && $data['username'] !== null) && ($data['password'] !== 'password' && $data['password'] !== null)) {
+	// 	$data['message'] = 'Invalid credentials';
+	// } else if ($data['username'] == 'guest' && $data['password'] == 'password') {
+	// 	$_SESSION['loggedInUser'] = $data['username'];
+	// 	header('Location: authorized.php');
+	// 	exit;
+	// }
+	// return $data;
 }
 extract(pageController());
 
