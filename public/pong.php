@@ -1,17 +1,15 @@
 <?php
-	function pageController() 
-	{
-		if (isset($_GET['count'])){
-			$count = $_GET['count'];
-		} else {
-			$count = 0;
-		}
-		if (isset($_GET['data'])) {
-			$count = 'GAME OVER PING';
-		}
-		return ['count' => $count];
+require_once '../Input.php';
+function pageController() 
+{
+	$data = [];
+	$data['count'] = Input::get("count", 0);
+	if (Input::get("data")) {
+		$data['count'] = 'GAME OVER PONG';
 	}
-	extract(pageController());
+	return $data;
+}
+extract(pageController());
 ?>
 <!DOCTYPE html>
 <html>
