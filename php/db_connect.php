@@ -2,11 +2,11 @@
 // IP address to connect to
 define('DB_HOST', '127.0.0.1');
 // The database to connect to
-define('DB_NAME', 'employees');
+define('DB_NAME', 'parks_db');
 // The mySQL user to use
-define('DB_USER', 'vagrant');
+define('DB_USER', 'parks_user');
 // Password for MySQL user
-define('DB_PASS', 'vagrant');
+define('DB_PASS', 'codeup');
 
 // Get new instance of PDO object
 $dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
