@@ -1,0 +1,43 @@
+<div class ="container-fluid">
+	<div class="col col-md-8 col-md-offset-2 col-centered">
+		<div class="row center-block">
+			<table class="table table-striped table-hover table-bordered">
+				<tr>
+					<td>#</td>
+					<td>Park Name</td>
+					<td>Location</td>
+					<td>Date Established</td>
+					<td>Area (in acres)</td>
+				</tr>
+				<?php foreach($pagedParks as $park) : ?>
+					<tr>
+						<td><?= $park['id'] ?></td>
+						<td><?= $park['name'] ?></td>
+						<td><?= $park['location'] ?></td>
+						<td><?= $park['date_established'] ?></td>
+						<td><?= $park['area_in_acres'] ?></td>
+					</tr>
+				<?php endforeach; ?>
+			</table>
+		</div>
+		<div class="row">
+			<nav>
+				<ul class="pagination">
+					<li>
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<?php foreach($pageNumbers as $pageNumber) : ?>
+						<li><a href="?page=<?= $pageNumber ?>"><?= $pageNumber + 1 ?></a></li>
+					<?php endforeach; ?>
+					<li>
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
