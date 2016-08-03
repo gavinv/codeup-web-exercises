@@ -19,7 +19,12 @@ $pageNumbers = pageNumber($parks);
 	<?php include 'partials/head.phtml'; ?>
 </head>
 <body>
-	<?php include 'partials/body.phtml'; ?>
+	<div class ="container">
+		<div class="row">
+			<?php include 'partials/body.phtml'; ?>
+			<?php include 'partials/parks_form.phtml'; ?>
+		</div>
+	</div>
 	<?php include 'partials/scripts.phtml'; ?>
 </body>
 </html>
