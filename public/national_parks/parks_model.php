@@ -1,7 +1,7 @@
 <?php
 function pagination($array)
 {
-	$currentPage = Input::get('page');
+	$currentPage = max([Input::get('page', 0), 0]);;
 	$perPage = 4;
 	$numPages = ceil(count($array) / $perPage);
 	if(!$currentPage || $currentPage > $numPages)
@@ -11,7 +11,7 @@ function pagination($array)
 }
 function pageNumber($array)
 {
-	$perPage = 5;
+	$perPage = 4;
 	$numPages = ceil(count($array) / $perPage);
 	$pageArray = [];
 	for($i = 0; $i < $numPages; $i++)
