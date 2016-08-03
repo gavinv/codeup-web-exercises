@@ -6,7 +6,7 @@ require 'parks_model.php';
 function pageController($dbc) {
 	$data = [];
 	$data['parks'] = $dbc->query('SELECT * FROM national_parks')->fetchAll();
-	// print_r($data['parks']->fetchAll());
+	$data['page'] = Input::get('page', 1);
 	return $data;
 }
 // $pagedParks = 
