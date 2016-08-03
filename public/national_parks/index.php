@@ -9,7 +9,6 @@ function pageController($dbc) {
 	$data['page'] = Input::get('page', 1);
 	return $data;
 }
-// $pagedParks = 
 extract(pageController($dbc));
 $pagedParks = pagination($parks);
 $pageNumbers = pageNumber($parks);

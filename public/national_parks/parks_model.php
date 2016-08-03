@@ -20,3 +20,10 @@ function pageNumber($array)
 	}
 	return $pageArray;
 }
+function activePage($pageNumber, $page) {
+	$status = '';
+	if($pageNumber == $page) {
+		$status = 'active';
+	}
+	return $status;
+}

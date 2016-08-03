@@ -34,7 +34,7 @@
 					</li>
 				<?php endif; ?>
 					<?php foreach($pageNumbers as $pageNumber) : ?>
-						<li><a href="?page=<?= $pageNumber ?>"><?= $pageNumber?></a></li>
+						<li class="<?= activePage($pageNumber, $page); ?>"><a href="?page=<?= $pageNumber ?>"><?= $pageNumber?></a></li>
 					<?php endforeach; ?>
 				<?php if($page < $pageNumber) : ?>
 					<li>
