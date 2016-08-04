@@ -4,32 +4,32 @@ require __DIR__ . '/../src/Input.php';
 function pageController()
 {
     $teamId = Input::get('team_id');
-    $sql = <<<STATISTICS 
-SELECT
-  (SELECT COUNT(*)
-   FROM games
-   WHERE (games.local_team_runs > games.visitor_team_runs AND
-          games.local_team_id = t.id)
-         OR (games.local_team_runs < games.visitor_team_runs AND
-             games.visitor_team_id = t.id)) AS games_won,
-  (SELECT COUNT(*)
-   FROM games
-   WHERE (games.local_team_runs < games.visitor_team_runs AND
-          games.local_team_id = t.id)
-         OR (games.local_team_runs > games.visitor_team_runs AND
-             games.visitor_team_id = t.id)) AS games_lost,
-  (SELECT COUNT(*)
-   FROM games
-   WHERE (games.local_team_runs > games.visitor_team_runs AND
-          games.local_team_id = t.id))      AS won_as_local,
-  (SELECT COUNT(*)
-   FROM games
-   WHERE (games.local_team_runs < games.visitor_team_runs AND
-          games.visitor_team_id = t.id))    AS won_as_visitor,
-  t.name
-FROM teams t
-WHERE t.id = $teamId
-STATISTICS;
+//     $sql = <<<STATISTICS
+// SELECT
+//   (SELECT COUNT(*)
+//    FROM games
+//    WHERE (games.local_team_runs > games.visitor_team_runs AND
+//           games.local_team_id = t.id)
+//          OR (games.local_team_runs < games.visitor_team_runs AND
+//              games.visitor_team_id = t.id)) AS games_won,
+//   (SELECT COUNT(*)
+//    FROM games
+//    WHERE (games.local_team_runs < games.visitor_team_runs AND
+//           games.local_team_id = t.id)
+//          OR (games.local_team_runs > games.visitor_team_runs AND
+//              games.visitor_team_id = t.id)) AS games_lost,
+//   (SELECT COUNT(*)
+//    FROM games
+//    WHERE (games.local_team_runs > games.visitor_team_runs AND
+//           games.local_team_id = t.id))      AS won_as_local,
+//   (SELECT COUNT(*)
+//    FROM games
+//    WHERE (games.local_team_runs < games.visitor_team_runs AND
+//           games.visitor_team_id = t.id))    AS won_as_visitor,
+//   t.name
+// FROM teams t
+// WHERE t.id = $teamId
+// STATISTICS;
 
     $connection = new PDO('mysql:host=localhost;dbname=the_league_db', 'vagrant', 'vagrant', [
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
