@@ -35,7 +35,7 @@ class Input
 		public static function getString($key)
 		{
 			if(!is_string(self::get($key))) {
-				throw new Exception("$key must be a string!");
+				throw new Exception("The value for $key must be a string!");
 			} else {
 				return trim(self::get($key));
 			}
@@ -43,7 +43,7 @@ class Input
 		public static function getNumber($key)
 		{
 			if(!is_numeric(self::get($key))) {
-				throw new Exception("$key must be a number!");
+				throw new Exception("The value for $key must be a number!");
 			} else {
 				return floatval(self::get($key));
 			}
