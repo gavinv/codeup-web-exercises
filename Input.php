@@ -16,6 +16,10 @@ class Input
             return false;
         }
     }
+    public static function isPost()
+    {
+        return !empty($_POST);
+    }
 
     /**
      * Get a requested value from either $_POST or $_GET
@@ -27,6 +31,22 @@ class Input
     public static function get($key, $default = null)
     {
         return self::has($key) ? $_REQUEST[$key] : $default;
+    }
+    public static function getString($key)
+    {
+        if(!is_string(self::get($key))) {
+            throw new Exception('$key must be a string!');
+        } else {
+            return self::get($key);
+        }
+    }
+    public static function getNumber($key)
+    {
+        if(!is_numeric(self::get($key))) {
+            throw new Exception('$key must be a number!');
+        } else {
+            return self::get($key);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////

@@ -1,24 +1,24 @@
 <div class="col col-md-4">
-  <form>
+  <form method="POST">
     <div class="form-group">
       <label for="name">Park Name</label>
-      <input type="text" class="form-control" id="name" placeholder="Name">
+      <input type="text" class="form-control" id="name" placeholder="Name" name="name">
     </div>
     <div class="form-group">
       <label for="location">Location</label>
-      <input type="password" class="form-control" id="location" placeholder="Location">
+      <input type="text" class="form-control" id="location" placeholder="Location" name="location">
     </div>
     <div class="form-group">
       <label for="date_established">Date Established</label>
-      <input type="text" class="form-control" id="date_established" placeholder="Date Est.">
+      <input type="text" class="form-control" id="date_established" placeholder="Date Est." name="date_established">
     </div>
     <div class="form-group">
       <label for="area_in_acres">Area (in acres)</label>
-      <input type="text" class="form-control" id="area_in_acres" placeholder="Area">
+      <input type="text" class="form-control" id="area_in_acres" placeholder="Area" name="area_in_acres">
     </div>
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea type="text" class="form-control" rows="3" id="description" placeholder="Description"></textarea>
+      <textarea type="text" class="form-control" rows="3" id="description" placeholder="Description" name="description"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
