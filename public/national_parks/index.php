@@ -12,7 +12,7 @@ function pageController($dbc) {
 		$name = Input::getString('name');
 		$description = Input::getString('description');
 		$location = Input::getString('location');
-		$dateEstablished = Input::getString('date_established');
+		$dateEstablished = Input::getDate('date_established');
 		$areaInAcres = Input::getNumber('area_in_acres');
 		
 		$insert = 'INSERT INTO national_parks (name, description, location, date_established, area_in_acres) VALUES (:name, :description, :location, :date_established, :area_in_acres)';
@@ -21,7 +21,7 @@ function pageController($dbc) {
 		$statement->bindValue(':description', $description, PDO::PARAM_STR);
 		$statement->bindValue(':area_in_acres', $areaInAcres, PDO::PARAM_STR);
 		$statement->bindValue(':location', $location, PDO::PARAM_STR);
-		$statement->bindValue(':date_established', $dateEstablished, PDO::PARAM_STR);
+		$statement->bindValue(':date_established', $dateEstablished->format('Y-m-d'), PDO::PARAM_STR);
         $statement->execute();
 	}
 	return $data;
