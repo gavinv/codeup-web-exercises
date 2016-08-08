@@ -32,15 +32,18 @@ class Input
 		{
 			return self::has($key) ? $_REQUEST[$key] : $default;
 		}
-		public static function getString($key)
+		public static function getString($key, $min = 3, $max = 30);
 		{
-			if(!is_string(self::get($key))) {
+			$input = self::get($key);
+			if(!is_string($input) || is_numeric($input) {
 				throw new Exception("The value for $key must be a string!");
-			} else {
-				return trim(self::get($key));
+			} 
+			if(strlen($input) < $min && strlen($input) > $max){
+				throw new LengthException("Input must be between $min and $max characters!");
 			}
+			return trim(self::get($key));
 		}
-		public static function getNumber($key)
+		public static function getNumber($key, $min = 1, $max = 8);
 		{
 			if(!is_numeric(self::get($key))) {
 				throw new Exception("The value for $key must be a number!");
