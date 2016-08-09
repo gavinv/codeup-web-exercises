@@ -1,5 +1,8 @@
 <?php
-
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'adlister_db');
+define('DB_USER', 'adlister_user');
+define('DB_PASS', 'codeup');
 abstract class Model
 {
 	/** @var PDO|null Connection to the database */
@@ -29,15 +32,11 @@ abstract class Model
 
 		// In order to use dbConnect, PDO object reqyures db config
 		// file to define DB_HOST, DB_NAME, DB_USER, and DB_PASS
-		// define('DB_HOST', '127.0.0.1');
-		// define('DB_NAME', 'db_name');
-		// define('DB_USER', 'db_username');
-		// define('DB_PASS', 'db_password');
 		protected static function dbConnect()
 		{
 			if (!self::$dbc) {
-				$dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
-				$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				self::$dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+				self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			}
 		}
 
@@ -48,12 +47,12 @@ abstract class Model
 		 *
 		 * @return mixed|null value from the attributes array or null if it is undefined
 		 */
-		public function __get($key, $default = null)
+		public function __get($key)
 		{
 			if (array_key_exists($key, $this->attributes)) {
 				return $this->attributes[$key];
 			} else {
-				return $default;
+				return null;
 			}
 		}
 

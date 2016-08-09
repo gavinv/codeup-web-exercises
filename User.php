@@ -9,7 +9,8 @@ class User extends Model
 	/** Insert a new entry into the database */
 	protected function insert()
 	{
-		$stmt = $dbc->prepare('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
+		$insert = ('INSERT INTO users (username, password, email) VALUES (:username, :password, :email)');
+		$stmt = self::$dbc->prepare($insert);
 
 		$stmt->bindValue(':username', $this->attributes['username'], PDO::PARAM_STR);
 		$stmt->bindValue(':password',  $this->attributes['password'],  PDO::PARAM_STR);
@@ -44,9 +45,9 @@ class User extends Model
 		{
 			// Get connection to the database
 			self::dbConnect();
-			
+			$stmt = $dbc->prepare('SELECT * FROM users WHERE id = :id');
 				// @TODO: Create select statement using prepared statements
-
+			$result = $this->stmt->fetchAll();
 				// @TODO: Store the result in a variable named $result
 
 				// The following code will set the attributes on the calling object based on the result variable's contents
