@@ -27,10 +27,18 @@ abstract class Model
      *
      * This method should be called at the beginning of any function that needs to communicate with the database
      */
+
+    // In order to use dbConnect, PDO object reqyures db config
+    // file to define DB_HOST, DB_NAME, DB_USER, and DB_PASS
+    // define('DB_HOST', '127.0.0.1');
+    // define('DB_NAME', 'db_name');
+    // define('DB_USER', 'db_username');
+    // define('DB_PASS', 'db_password');
     protected static function dbConnect()
     {
         if (!self::$dbc) {
-            // @TODO: Connect to database
+            $dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+            $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
     }
 
