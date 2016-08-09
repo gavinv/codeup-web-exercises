@@ -24,7 +24,7 @@ class User extends Model
 	/** Update existing entry in the database */
 	protected function update()
 	{
-		$stmt = $dbc->prepare('UPDATE users SET username = :username, password = :password, email = :email WHERE id = :id');
+		$stmt = self::$dbc->prepare('UPDATE users SET username = :username, password = :password, email = :email WHERE id = :id');
 
 		$stmt->bindValue(':username', $this->attributes['username'], PDO::PARAM_STR);
 		$stmt->bindValue(':password',  $this->attributes['password'],  PDO::PARAM_STR);
@@ -45,12 +45,13 @@ class User extends Model
 		{
 			// Get connection to the database
 			self::dbConnect();
-			$stmt = $dbc->prepare('SELECT * FROM users WHERE id = :id');
-				// @TODO: Create select statement using prepared statements
-			$result = $this->stmt->fetchAll();
-				// @TODO: Store the result in a variable named $result
+			$stmt = self::$dbc->prepare('SELECT * FROM users WHERE id = :id');
+			$stmt->bindValue(':id', $id, PDO::PARAM_STR);
+			$stmt->execute();
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			var_dump($result);
 
-				// The following code will set the attributes on the calling object based on the result variable's contents
+			// The following code will set the attributes on the calling object based on the result variable's contents
 			$instance = null;
 			if ($result) {
 				$instance = new static($result);
