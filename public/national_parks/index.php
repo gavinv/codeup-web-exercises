@@ -10,28 +10,38 @@ function pageController($dbc) {
 	$data['page'] = Input::get('page', 1);
 	if(Input::isPost()) {
 		try {
-			$name = Input::getString('name');
+			$name = Input::getString('name', 3, 20);
 		} catch (Exception $e) {
+			$errors['name'] = '<b>Error: </b>' . $e->getMessage();
+		} catch (LengthException $e) {
 			$errors['name'] = '<b>Error: </b>' . $e->getMessage();
 		}
 		try {
 			$description = Input::getString('description');
 		} catch (Exception $e) {
 			$errors['description'] = '<b>Error: </b>' . $e->getMessage();
+		} catch (LengthException $e) {
+			$errors['description'] = '<b>Error: </b>' . $e->getMessage();
 		}
 		try {
 			$location = Input::getString('location');
 		} catch (Exception $e) {
-			$errors['locations'] = '<b>Error: </b>' . $e->getMessage();
+			$errors['location'] = '<b>Error: </b>' . $e->getMessage();
+		} catch (LengthException $e) {
+			$errors['location'] = '<b>Error: </b>' . $e->getMessage();
 		}
 		try {
 			$dateEstablished = Input::getDate('date_established');
 		} catch (Exception $e) {
 			$errors['date_established'] = '<b>Error: </b>' . $e->getMessage();
+		} catch (RangeException $e) {
+			$errors['date_established'] = '<b>Error: </b>' . $e->getMessage();
 		}
 		try {
 			$areaInAcres = Input::getNumber('area_in_acres');
 		} catch (Exception $e) {
+			$errors['area_in_acres'] = '<b>Error: </b>' . $e->getMessage();
+		} catch (RangeException $e) {
 			$errors['area_in_acres'] = '<b>Error: </b>' . $e->getMessage();
 		}
 		

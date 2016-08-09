@@ -32,10 +32,14 @@ class Input
 		{
 			return self::has($key) ? $_REQUEST[$key] : $default;
 		}
-		public static function getString($key, $min = 3, $max = 30);
+
+		public static function getString($key, $min = 3, $max = 30)
 		{
 			$input = self::get($key);
-			if(!is_string($input) || is_numeric($input) {
+			if(!is_string($key) && !is_numeric($min) && !is_numeric($max)) {
+				throw new InvalidArgumentException("$key must be a string and/or $min/$max must be a number!");
+			}
+			if(!is_string($input) || is_numeric($input)) {
 				throw new Exception("The value for $key must be a string!");
 			} 
 			if(strlen($input) < $min && strlen($input) > $max){
@@ -43,20 +47,32 @@ class Input
 			}
 			return trim(self::get($key));
 		}
-		public static function getNumber($key, $min = 1, $max = 8);
+
+		public static function getNumber($key, $min = 1, $max = 8)
 		{
-			if(!is_numeric(self::get($key))) {
-				throw new Exception("The value for $key must be a number!");
-			} else {
-				return floatval(self::get($key));
+			$input = self::get($key);
+			if(!is_string($key) && !is_numeric($min) && !is_numeric($max)) {
+				throw new InvalidArgumentException("$key must be a string and/or $min/$max must be a number!");
 			}
+			if(!is_numeric($input)) {
+				throw new Exception("The value for $key must be a number!");
+			}
+			if($input < $min || $input > $max) {
+				throw new RangeException("$key must be between $min and $max characters!");
+			}
+			return floatval($input);
 		}
+
 		public static function getDate($key)
 		{
-			if(!strtotime(self::get($key))) {
+			$input = self::get($key);
+			if(!strtotime($input)) {
 				throw new Exception("The value for $key must be a date!");
 			}
-			return new DateTime(self::get($key));
+			if($input < $min || $input > $max) {
+				throw new RangeException("$key must be between $min and $max characters!");
+			}
+			return new DateTime($input);
 		}
 
 		///////////////////////////////////////////////////////////////////////////
